@@ -1,0 +1,193 @@
+/* --- 1. Variables Globales & Reset de Base (Mise à jour des couleurs/espacements) --- */
+:root {
+    --primary-color: #1a73e8; /* Bleu vif pour Google-like */
+    --secondary-color: #34a853; /* Vert pour le succès */
+    --background-color: #f8f9fa; /* Arrière-plan très clair */
+    --card-background: #ffffff;
+    --border-color: #e0e0e0; /* Bordure plus visible */
+    --text-color: #202124;
+    --border-radius: 8px;
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 2. Mise en Page Générale (Header/Footer/Main) --- */
+
+.app-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    box-shadow: var(--shadow-subtle);
+}
+
+.container {
+    flex-grow: 1;
+    width: 90%;
+    max-width: 1100px; /* Élargissement du conteneur */
+    margin: var(--spacing-lg) auto;
+    display: grid;
+    gap: var(--spacing-lg);
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .container {
+        /* Colonnes ajustées: 1 pour le formulaire, 2 pour les résultats */
+        grid-template-columns: 1fr 2fr; 
+    }
+}
+
+.app-footer {
+    padding: 15px;
+    background-color: #e9ecef;
+    text-align: center;
+    font-size: 0.85em;
+    color: #6c757d;
+}
+
+/* --- 3. Composants (Cards) : PLUS COUPÉS AVEC BORDURES FORTES --- */
+
+.card {
+    background-color: var(--card-background);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    /* Utilisation d'une bordure visible au lieu d'une ombre douce */
+    border: 1px solid var(--border-color); 
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    font-size: 1.4em;
+}
+
+/* --- 4. Styles du Formulaire de Connexion --- */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: #5f6368;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+    outline: none;
+}
+
+/* --- 5. Boutons --- */
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-top: 10px;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #1669d7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn:active {
+    background-color: #0c59b8;
+}
+
+/* --- 6. Zone d'Affichage des Messages (maDiv1) : L'élément le plus "coupé" --- */
+
+.message-display {
+    min-height: 120px;
+    padding: var(--spacing-md);
+    /* Fond pour contraster l'affichage */
+    background-color: #f1f3f4; 
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    /* Marge supérieure pour mieux séparer du titre H2 */
+    margin-top: 5px; 
+    word-break: break-all; /* Important pour les longues chaînes comme le Token */
+}
+
+.message-display p {
+    margin-bottom: 8px;
+    padding: 0;
+    font-size: 0.95em;
+    color: var(--text-color);
+}
+
+/* Pour mettre en valeur le Token */
+.message-display p:nth-child(2) { 
+    font-family: monospace;
+    background-color: #e8e8e8;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    white-space: pre-wrap; /* Pour mieux gérer le retour à la ligne du token */
+}
+
+
+.placeholder-text {
+    color: #888;
+    font-style: italic;
+}
+
+/* Zone d'information */
+.api-test-section {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #fff3cd; /* Couleur d'alerte jaune pâle (Bootstrap-like) */
+    color: #856404;
+    border: 1px solid #ffeeba;
+    font-size: 0.9em;
+}
